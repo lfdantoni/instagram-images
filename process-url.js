@@ -15,7 +15,7 @@ exports.getInstImgUrl = async (instagramImgLink) => {
         parse = parse.substr(0, parse.length - 1);
   
         const jsonData = JSON.parse(parse);
-
+        console.log(jsonData.entry_data.PostPage)
         if(checkCorrectInfo(jsonData)) {
           const mediaData = jsonData.entry_data.PostPage[0].graphql.shortcode_media;
           console.log(mediaData)
