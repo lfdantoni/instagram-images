@@ -8,7 +8,7 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.status(200).send('All is ok2!')
+  res.sendFile(__dirname +'/index.html');
 })
 
 app.post('/url', async (req, res) => {
