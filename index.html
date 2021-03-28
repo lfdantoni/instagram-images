@@ -16,8 +16,23 @@
     document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('btn').addEventListener('click', async () => {
         const link = document.getElementById('link').value;
+
+        fetch('/url', {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            instUrl: link
+          })
+        })
+        .then(r => r.json())
+        .then(console.log)
+        .catch(console.error)
+
         const links = await getImageFromInstUrl(link)
         console.log(links)
+
       })
     })
 
