@@ -4,7 +4,12 @@ exports.getInstImgUrl = async (instagramImgLink) => {
 
   // const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instagramImgLink;
   
-  return axios.get(instagramImgLink)
+  return axios.get(
+      instagramImgLink,
+      {
+        headers: {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+      }
+    )
     .then(resp => {
       const {data} = resp;
       try {
