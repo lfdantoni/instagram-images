@@ -14,7 +14,10 @@
 
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
+      navigator.clipboard.readText().then(text =>  document.getElementById('link').value = text);
+      
       document.getElementById('btn').addEventListener('click', async () => {
+        
         const link = document.getElementById('link').value;
 
         // fetch('/url', {
@@ -30,12 +33,17 @@
         // .then(console.log)
         // .catch(console.error)
 
-        const links = await getImageFromInstUrl(link)
-        console.log(links)
+        try {
+          const links = await getImageFromInstUrl(link)
+          console.log(links)
 
-        document.getElementById('imgs').innerHTML = links.map(l => `
-          <img src="${l}" /> <br />
-        `)
+          document.getElementById('imgs').innerHTML = links.map(l => `
+            <img src="${l}" /> <br />
+          `)
+        } catch (error) {
+          document.getElementById('imgs').innerHTML = '<b>ERROR!</b>'
+        }
+        
       })
     })
 
@@ -75,6 +83,9 @@
           } catch (error) {
             Promise.reject(error)
           }
+        })
+        .catch(error => {
+
         })
       }
       const checkCorrectInfo = (jsonData) => !!(jsonData 
