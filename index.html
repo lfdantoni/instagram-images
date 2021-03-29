@@ -43,7 +43,10 @@
     const getImageFromInstUrl = async (instUrl) => {
       const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instUrl;
 
+
+
       return fetch(url)
+        .catch(() => fetch(instUrl))
         .then(r => r.text())
         .then(data => {
           try {
