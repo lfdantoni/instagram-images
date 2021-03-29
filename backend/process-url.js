@@ -1,10 +1,13 @@
+// process-url.js
+
 const axios = require('axios');
 
 exports.getInstImgUrl = async (instagramImgLink) => {
 
-  // const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instagramImgLink;
+  const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instagramImgLink;
   
-  return axios.get(instagramImgLink)
+  return axios.get(url)
+    .catch(axios.get(instagramImgLink))
     .then(resp => {
       const {data} = resp;
       try {
@@ -15,7 +18,7 @@ exports.getInstImgUrl = async (instagramImgLink) => {
         parse = parse.substr(0, parse.length - 1);
   
         const jsonData = JSON.parse(parse);
-
+        console.log(jsonData.entry_data)
         if(checkCorrectInfo(jsonData)) {
           const mediaData = jsonData.entry_data.PostPage[0].graphql.shortcode_media;
           console.log(mediaData)
