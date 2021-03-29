@@ -33,6 +33,9 @@
         const links = await getImageFromInstUrl(link)
         console.log(links)
 
+        document.getElementById('imgs').innerHTML = links.map(l => `
+          <img src="${l}" /> <br />
+        `)
       })
     })
 
