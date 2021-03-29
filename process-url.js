@@ -2,10 +2,10 @@ const axios = require('axios');
 
 exports.getInstImgUrl = async (instagramImgLink) => {
 
-  // const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instagramImgLink;
+  const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instagramImgLink;
   
   return axios.get(
-      instagramImgLink
+    url
       // ,{
       //   headers: {
       //     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9", 
