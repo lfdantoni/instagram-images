@@ -15,23 +15,10 @@
   <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', async () => {
       navigator.clipboard.readText().then(text =>  document.getElementById('link').value = text);
-      
+
       document.getElementById('btn').addEventListener('click', async () => {
         
         const link = document.getElementById('link').value;
-
-        // fetch('/url', {
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   method: 'POST',
-        //   body: JSON.stringify({
-        //     instUrl: link
-        //   })
-        // })
-        // .then(r => r.json())
-        // .then(console.log)
-        // .catch(console.error)
 
         try {
           const links = await getImageFromInstUrl(link)
