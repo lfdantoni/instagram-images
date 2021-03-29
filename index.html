@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,12 +39,16 @@
     const getImageFromInstUrl = async (instUrl) => {
       const url = 'https://images' + ~~(Math.random() * 3333) + '-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=' + instUrl;
 
-
-
       return fetch(url)
         .catch(() => fetch(instUrl))
+        .catch(() => fetch('/url', {
+          method: 'POST',
+          body: JSON.stringify({ instUrl })
+        }))
         .then(r => r.text())
         .then(data => {
+          if(!data) return Promise.reject('No Response');
+
           try {
             const shareDataPos = data.indexOf('<script type="text/javascript">window._sharedData = ');
             let parse = data.substr(shareDataPos, data.length - shareDataPos);
